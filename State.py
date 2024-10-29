@@ -106,4 +106,3 @@ class State:
         solution = solution[:-1]
         solution.reverse()
         return solution
-         

@@ -1,12 +1,15 @@
 from Search_Algorithms import BFS, DFS, Greedy, AStar_search
 
+
+# lee el archivo de texto
 #initial state
-n = int(input("Enter n\n"))
-print("Enter your" ,n,"*",n, "puzzle")
+file = open("puzzle.txt", "r")
+n = int(file.readline())
 root = []
 for i in range(0,n*n):
-    p = int(input())
-    root.append(p)
+    line = list(map(int, file.readline().split()))
+    for number in line:
+        root.append(number)
 
 print("The given state is:", root)
 
@@ -41,7 +44,7 @@ if solvable(root):
     print('BFS Solution is ', BFS_solution[0])
     print('Number of explored nodes is ', BFS_solution[1])    
     print('BFS Time:', BFS_time , "\n")
-          
+    
     time2 = time()
     DFS_solution = DFS(root, n)
     DFS_time = time() - time2
@@ -66,7 +69,3 @@ if solvable(root):
     
 else:
     print("Not solvable")
-
-
-
-     
