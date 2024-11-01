@@ -2,7 +2,8 @@ from State import State
 from queue import PriorityQueue
 from queue import Queue
 from queue import LifoQueue
-
+# pausar el programa
+import time
 
 #Breadth-first Search
 def BFS(given_state , n):
@@ -48,6 +49,31 @@ def DFS(given_state , n):
                 if child.test():
                     return child.solution(), len(explored)
                 frontier.put(child)
+    return (("Couldn't find solution in the limited depth."), len(explored))
+
+
+
+#Depth-first Search with unlimited depth
+def DFS_unlimited(given_state , n): 
+    root = State(given_state, None, None, 0, 0)
+    if root.test():
+        return root.solution()
+    frontier = LifoQueue()
+    frontier.put(root)
+    explored = []
+    
+    while not(frontier.empty()):
+        current_node = frontier.get()
+        max_depth = current_node.depth #current depth
+        explored.append(current_node.state)
+
+        children = current_node.expand(n)
+        for child in children:
+            if child.state not in explored:
+                if child.test():
+                    return child.solution(), len(explored)
+                frontier.put(child)
+
     return (("Couldn't find solution in the limited depth."), len(explored))
         
     
