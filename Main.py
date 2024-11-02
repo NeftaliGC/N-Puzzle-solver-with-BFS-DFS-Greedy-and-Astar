@@ -1,12 +1,15 @@
-from Search_Algorithms import BFS, DFS, Greedy, AStar_search
+from Search_Algorithms import BFS, DFS, Greedy, AStar_search, DFS_unlimited, DFS_iterative
 
+
+# lee el archivo de texto
 #initial state
-n = int(input("Enter n\n"))
-print("Enter your" ,n,"*",n, "puzzle")
+file = open("puzzle.txt", "r")
+n = int(file.readline())
 root = []
 for i in range(0,n*n):
-    p = int(input())
-    root.append(p)
+    line = list(map(int, file.readline().split()))
+    for number in line:
+        root.append(number)
 
 print("The given state is:", root)
 
@@ -41,7 +44,7 @@ if solvable(root):
     print('BFS Solution is ', BFS_solution[0])
     print('Number of explored nodes is ', BFS_solution[1])    
     print('BFS Time:', BFS_time , "\n")
-          
+    
     time2 = time()
     DFS_solution = DFS(root, n)
     DFS_time = time() - time2
@@ -63,10 +66,20 @@ if solvable(root):
     print('Number of explored nodes is ', AStar_solution[1])   
     print('A* Time:', AStar_time)
     
+    time5 = time()
+    DFS_unlimited_solution = DFS_unlimited(root, n)
+    DFS_unlimited_time = time() - time5
+    print('DFS Unlimited Solution is ', DFS_unlimited_solution[0])
+    print('Number of explored nodes is ', DFS_unlimited_solution[1])
+    print('DFS Time:', DFS_unlimited_time, "\n")
+
+    time6 = time()
+    DFS_iterative_solution = DFS_iterative(root, n)
+    DFS_iterative_time = time() - time6
+    print('DFS Iterative Solution is ', DFS_iterative_solution[0])
+    print('Number of explored nodes is ', DFS_iterative_solution[1])
+    print('DFS Time:', DFS_iterative_time, "\n")
+
     
 else:
     print("Not solvable")
-
-
-
-     
