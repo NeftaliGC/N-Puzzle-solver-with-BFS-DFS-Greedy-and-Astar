@@ -1,16 +1,16 @@
 class State:
-    goal = [1, 2, 3, 4, 5, 6, 7, 8, 0] 
     #this should be changed manually based on n 
     #e.g. it should be [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 0] if n is 4.
     
     greedy_evaluation = None
     AStar_evaluation = None
     heuristic = None
-    def __init__(self, state, parent, direction, depth, cost):
+    def __init__(self, state, parent, direction, depth, cost, n):
         self.state = state
         self.parent = parent
         self.direction = direction
         self.depth = depth
+        self.goal = list(range(1, n * n)) + [0]
 
         if parent:
             self.cost = parent.cost + cost
@@ -91,7 +91,7 @@ class State:
                 temp[x], temp[x + n] = temp[x + n], temp[x]
         
         
-            children.append(State(temp, self, direction, self.depth + 1, 1)) #depth should be changed as children are produced
+            children.append(State(temp, self, direction, self.depth + 1, 1, n)) #depth should be changed as children are produced
         return children
 
     
