@@ -7,7 +7,7 @@ import time
 
 #Breadth-first Search
 def BFS(given_state , n):
-    root = State(given_state, None, None, 0, 0)
+    root = State(given_state, None, None, 0, 0, n)
     if root.test():
         return root.solution()
     frontier = Queue()
@@ -28,7 +28,7 @@ def BFS(given_state , n):
 
 #Depth-first Search with limited depth
 def DFS(given_state , n): 
-    root = State(given_state, None, None, 0, 0)
+    root = State(given_state, None, None, 0, 0, n)
     if root.test():
         return root.solution()
     frontier = LifoQueue()
@@ -55,7 +55,7 @@ def DFS(given_state , n):
 
 #Depth-first Search with unlimited depth
 def DFS_unlimited(given_state , n): 
-    root = State(given_state, None, None, 0, 0)
+    root = State(given_state, None, None, 0, 0, n)
     if root.test():
         return root.solution()
     frontier = LifoQueue()
@@ -82,7 +82,7 @@ def DFS_iterative(given_state, n, max_depth_limit=30, initial_depth=5, depth_inc
     depth_limit = initial_depth  # Set initial depth limit
     
     while depth_limit <= max_depth_limit:
-        root = State(given_state, None, None, 0, 0)
+        root = State(given_state, None, None, 0, 0, n)
         if root.test():
             return root.solution()
         
@@ -125,7 +125,7 @@ def Greedy(given_state , n, heuristic = 1):
     frontier = PriorityQueue()
     explored = []
     counter = 0
-    root = State(given_state, None, None, 0, 0)
+    root = State(given_state, None, None, 0, 0, n)
     #root.evaluation()
     if heuristic == 1:
         evaluation = root.Manhattan_Distance(n) #we can use Misplaced_Tiles() instead.
@@ -163,7 +163,7 @@ def AStar_search(given_state , n, heuristic = 1):
     frontier = PriorityQueue()
     explored = []
     counter = 0
-    root = State(given_state, None, None, 0, 0)
+    root = State(given_state, None, None, 0, 0, n)
     if heuristic == 1:
         evaluation = root.Manhattan_Distance(n)
     elif heuristic == 2:
