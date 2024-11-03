@@ -121,13 +121,19 @@ def DFS_iterative(given_state, n, max_depth_limit=30, initial_depth=5, depth_inc
 
     return "Couldn't find solution within the maximum depth limit.", len(explored)
     
-def Greedy(given_state , n):
+def Greedy(given_state , n, heuristic = 1):
     frontier = PriorityQueue()
     explored = []
     counter = 0
     root = State(given_state, None, None, 0, 0)
     #root.evaluation()
-    evaluation = root.Manhattan_Distance(n) #we can use Misplaced_Tiles() instead.
+    if heuristic == 1:
+        evaluation = root.Manhattan_Distance(n) #we can use Misplaced_Tiles() instead.
+    elif heuristic == 2:
+        evaluation = root.Misplaced_Tiles(n)
+    else:
+        evaluation = root.Manhattan_Distance(n) #we can use Misplaced_Tiles() instead.
+
     frontier.put((evaluation[0], counter, root)) #based on greedy evaluation
 
     while not frontier.empty():
@@ -142,17 +148,26 @@ def Greedy(given_state , n):
         for child in children:
             if child.state not in explored:
                 counter += 1
-                evaluation = child.Manhattan_Distance(n) #we can use Misplaced_Tiles() instead.
+                if heuristic == 1:
+                    evaluation = child.Manhattan_Distance(n) #we can use Misplaced_Tiles() instead.
+                elif heuristic == 2:
+                    evaluation = child.Misplaced_Tiles(n)
+                else:
+                    evaluation = child.Manhattan_Distance(n) #we can use Misplaced_Tiles() instead.
+
                 frontier.put((evaluation[0], counter, child)) #based on greedy evaluation
     return
 
 
-def AStar_search(given_state , n):
+def AStar_search(given_state , n, heuristic = 1):
     frontier = PriorityQueue()
     explored = []
     counter = 0
     root = State(given_state, None, None, 0, 0)
-    evaluation = root.Manhattan_Distance(n) #we can use Misplaced_Tiles() instead.
+    if heuristic == 1:
+        evaluation = root.Manhattan_Distance(n)
+    elif heuristic == 2:
+        evaluation = root.Misplaced_Tiles(n)
     frontier.put((evaluation[1], counter, root)) #based on A* evaluation
 
     while not frontier.empty():
@@ -167,6 +182,9 @@ def AStar_search(given_state , n):
         for child in children:
             if child.state not in explored:
                 counter += 1
-                evaluation = child.Manhattan_Distance(n) #we can use Misplaced_Tiles() instead.
+                if heuristic == 1:
+                    evaluation = child.Manhattan_Distance(n) #we can use Misplaced_Tiles() instead.
+                elif heuristic == 2:
+                    evaluation = child.Misplaced_Tiles(n)
                 frontier.put((evaluation[1], counter, child)) #based on A* evaluation
     return
