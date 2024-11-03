@@ -33,12 +33,12 @@ En una respuesta rapida, A\* es el algoritmo con mejor desempeño para cualquier
 Que en este caso es mas eficiente que la heuristica por fichas descolocadas ya que la distancia Manhattan nos dice que tan lejos esta una ficha de estar colocada correctamente, en cambio las fichas descolocadas nos dice que tan alejados estamos de la solucion, lo que en ciertos casos puede ser contraproducente como se muestra en A\*.2.
 
 A\*.1 (distancia manhattan)
-![](Astar_1.png)
+![](img/Astar_1.png)
 
 ---
 
 A\*.2 (fichas descolocadas)
-![](Astar_2.png)
+![](img/Astar_2.png)
 
 ## **A\* Distancia Manhattan vs Fichas descolocadas**
 
@@ -51,11 +51,11 @@ En cambio, en el gráfico del A*.2, con la heurística de fichas descolocadas, e
 ### **Otros graficos:**
 
 - BFS
-  ![](BFS.png)
+  ![](img/BFS.png)
 - Grady (Distancia Manhattan)
-  ![](grady_1.png)
+  ![](img/grady_1.png)
 - Grady (Fichas descolocadas)
-  ![](grady_2.png)
+  ![](img/grady_2.png)
 
 ### **Explicacion de las graficas:**
 
